@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Review cXML</title>
+</head>
+<body>
+  <h1>Generated cXML</h1>
+<div style="white-space: pre; font-family: monospace; border: 1px solid #ccc; padding: 1em; background-color: #f8f8f8;">
+{{ cxml }}
+</div>
+
+  <form id="sendForm" action="/send_to_supplier" method="post">
+    <input type="hidden" name="cxml" value="{{ cxml|e }}">
+    <br>
+    <button type="submit">Send to Supplier</button>
+  </form>
+  <br>
+  <a href="/">Go back</a>
+</body>
+</html>
