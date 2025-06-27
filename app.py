@@ -56,6 +56,7 @@ def punchout_preview():
 def send_to_supplier():
     cxml = request.form.get('cxml')
     headers = {'Content-Type': 'application/xml'}
+    print(f"SUPPLIER_GATEWAY_URL: {SUPPLIER_GATEWAY_URL}")
     response = requests.post(SUPPLIER_GATEWAY_URL, data=cxml.encode('utf-8'), headers=headers)
 
     if response.status_code == 200:
@@ -74,11 +75,9 @@ def return_cart():
     #xml_data = request.data.decode('utf-8')
     xml_data = request.form.get('cxml', '')
     escaped_xml = html.escape(xml_data)
-    return f"<h1>Received Cart</h1><div style=\"white-space: pre; font-family: monospace; border: 1px solid #ccc; padding: 1em; background-color: #f8f8f8;\">{ escaped_xml }</div>\
+    return f"<h1>Ariba Procurement Portal: Received Cart</h1><div style=\"white-space: pre; font-family: monospace; border: 1px solid #ccc; padding: 1em; background-color: #f8f8f8;\">{ escaped_xml }</div>\
         <br/><a href=\"/\">Home</a>", 200
     
-
-
 
 if __name__ == '__main__':
     app.run(port=5001)

@@ -1,0 +1,33 @@
+# deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ariba-simulator
+  namespace: punchout
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ariba-simulator
+  template:
+    metadata:
+      labels:
+        app: ariba-simulator
+    spec:
+      containers:
+      - name: ariba-simulator
+        imagePullPolicy: Always
+        image: zahcen/ariba-simulator:latest
+        ports:
+          - containerPort: 5000
+        env:
+          - name: FLASK_APP
+            value: app.py  # Update if your file is named differently
+          - name: SUPPLIER_GATEWAY_URL
+            value: "https://supplier.zitaconseil.fr/punchout/start"
+          - name: RETURN_URL
+            value: "https://ariba.zitaconseil.fr/return"
+
+      imagePullSecrets:
+        - name: dockerhub-secret
+      

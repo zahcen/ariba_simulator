@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: ariba-vs
+  namespace: punchout
+spec:
+  gateways:
+  - istio-system/cert-manager-gateway
+  hosts:
+  - ariba.zitaconseil.fr
+  http:
+  - route:
+    - destination:
+        host: ariba-simulator.punchout.svc.cluster.local
+        port:
+          number: 80
