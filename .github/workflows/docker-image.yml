@@ -28,8 +28,8 @@ jobs:
     - name: Setup kubectl
       uses: ThomasKliszowski/setup-kubectl@v1
       with:
-      # Base64 encoded kube config
-      kube-config: ${{ secrets.KUBECONFIG_B64 }}
+         # Base64 encoded kube config
+         kube-config: ${{ secrets.KUBECONFIG_B64 }}
 
     - name: Apply Kubernetes manifests
       run: |
