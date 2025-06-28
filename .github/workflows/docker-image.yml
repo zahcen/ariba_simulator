@@ -25,6 +25,17 @@ jobs:
         image_version: 'v1.0'
         docker_file: '.'
         
-  
+    - name: Setup kubectl
+      uses: ThomasKliszowski/setup-kubectl@v1
+      with:
+      # Base64 encoded kube config
+      kube-config: ${{ secrets.KUBECONFIG_B64 }}
+
+    - name: Apply Kubernetes manifests
+      run: |
+         kubectl version
+         kubectl apply -f manifest/
+         
+          
     
             
